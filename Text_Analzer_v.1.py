@@ -52,3 +52,9 @@ else:
     print("Unregistered user, terminating the program...")
     quit()
 
+# Zadání čísla textu (int!)
+text_number = input("Enter a number btw. 1 and 3 to select: ")
+if int(text_number) not in range(1,4):
+    print("Invalid number, terminating the program...")
+else:
+    print(oddelovac)
