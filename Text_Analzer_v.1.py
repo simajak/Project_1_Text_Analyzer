@@ -28,3 +28,27 @@ other freshwater genera and herring similar to those
 in modern oceans. Other fish such as paddlefish,
 garpike and stingray are also present.'''
 ]
+
+oddelovac = "-" * 42 # Snad to bude stačit...
+
+reg_users = {"bob" : "123",
+             "ann" : "pass123",
+             "mike" : "password123",
+             "liz" : "pass123"}
+
+# Uživatel zadá jméno a heslo
+username = input("Username: ")
+password = input("Password: ")
+
+# Kontrola, jestli je uživatel zaregistrovaný
+if reg_users.get(username) == password:
+    print(oddelovac)
+    print(f"Welcome to the app, {username}!")
+    print("We have 3 texts to be analyzed.")
+    print(oddelovac)
+
+# Když neni zaregistrovaný
+else:
+    print("Unregistered user, terminating the program...")
+    quit()
+
