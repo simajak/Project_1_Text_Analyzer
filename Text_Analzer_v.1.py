@@ -54,7 +54,67 @@ else:
 
 # Zadání čísla textu (int!)
 text_number = input("Enter a number btw. 1 and 3 to select: ")
-if int(text_number) not in range(1,4):
-    print("Invalid number, terminating the program...")
+if text_number.isalpha():
+    print("Invalid entry, terminating the program...")
+    quit()
+elif int(text_number) not in range(1,4):
+    print("Invalid entry, terminating the program...")
 else:
     print(oddelovac)
+
+# Je potřeba upravit číslo textu kvůli indexování v seznamu TEXTS
+corrected_text_number = int(text_number) - 1
+
+# Příprava na vyčištěné textu (corrected_text_number = index)
+text = TEXTS[corrected_text_number]
+cleaned_text = []
+words = []
+numbers = []
+word_num = []
+
+for word in text.split(): #seznam slov
+    cleaned_text.append(word.strip(".,:;").lower())
+
+# Rozdělení na "slova" a "čísla"
+for word in cleaned_text:
+    if word.isalpha():
+        words.append(word)
+    elif word.isnumeric():
+        numbers.append(word)
+    elif word.isalnum(): # vykopne text, který neni alpha nebo num
+        word_num.append(word)
+    else:
+        continue
+
+# spočítat výskyt pro každé slovo = musim si vyrobit ! slovníky !
+word_count = {}
+number_count = {}
+
+for word in words:
+    if word not in word_count:
+       word_count[word] = 1
+    else:
+        word_count[word] =+ 1
+
+for number in numbers:
+    if word not in number_count:
+        number_count[number] = 1
+    else:
+        number_count[number] =+ 1
+
+# Výpočet slov, čísel, ...
+word_upper = 0
+word_lower = 0
+word_total = len(words) + len(numbers) + len(word_num)
+print(f"There are {word_total} words in the selected text.")
+
+# for word in text:
+#     if word.isupper():
+#         word_upper =+ 1
+#         print(word_upper)             nevim, to nevim
+#     elif word.islower():
+#         word_lower =+ 1
+#         print(word_lower)
+
+num_string = len(numbers)
+print(f"There are {num_string} numeric strings.")
