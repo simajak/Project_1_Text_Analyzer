@@ -142,23 +142,10 @@ print(divider)
 
 #Výpis výsledku uživateli
 
-# spočítám výskyty pro každé slovo
-word_occ: dict = dict()
-
+result = dict()
 for word in cleaned_text:
-    if word not in word_occ:
-        word_occ[word] = 1
-    else:
-        word_occ[word] = word_occ[word] + 1
+    len(word)
 
-# získej 9 nejčastějších hodnot
-words_words: list = list(word_occ.values())
-
-# získej slova, která se těchto hodnot týkají
-result = list()
-
-for word in cleaned_text:
-    result = len(cleaned_text[word])
 
 print(cleaned_text)
 print(word_occ)
