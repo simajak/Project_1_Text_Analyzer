@@ -29,7 +29,7 @@ in modern oceans. Other fish such as paddlefish,
 garpike and stingray are also present.'''
 ]
 
-oddelovac = "-" * 42 # Snad to bude stačit...
+divider = "-" * 42 # Snad to bude stačit...
 
 reg_users = {"bob" : "123",
              "ann" : "pass123",
@@ -42,10 +42,10 @@ password = input("Password: ")
 
 # Kontrola, jestli je uživatel zaregistrovaný
 if reg_users.get(username) == password:
-    print(oddelovac)
+    print(divider)
     print(f"Welcome to the app, {username}!")
     print("We have 3 texts to be analyzed.")
-    print(oddelovac)
+    print(divider)
 
 # Když neni zaregistrovaný
 else:
@@ -59,8 +59,9 @@ if text_number.isalpha():
     quit()
 elif int(text_number) not in range(1,4):
     print("Invalid entry, terminating the program...")
+    quit()
 else:
-    print(oddelovac)
+    print(divider)
 
 # Je potřeba upravit číslo textu kvůli indexování v seznamu TEXTS
 corrected_text_number = int(text_number) - 1
@@ -68,11 +69,12 @@ corrected_text_number = int(text_number) - 1
 # Příprava na vyčištěné textu (corrected_text_number = index)
 text = TEXTS[corrected_text_number]
 cleaned_text = []
+cleaned_text_no_lower = []
 words = []
 numbers = []
 word_num = []
 
-for word in text.split(): #seznam slov
+for word in text.split(): # seznam slov
     cleaned_text.append(word.strip(".,:;").lower())
 
 # Rozdělení na "slova" a "čísla"
@@ -92,7 +94,7 @@ number_count = {}
 
 for word in words:
     if word not in word_count:
-       word_count[word] = 1
+        word_count[word] = 1
     else:
         word_count[word] =+ 1
 
@@ -102,19 +104,67 @@ for number in numbers:
     else:
         number_count[number] =+ 1
 
+
 # Výpočet slov, čísel, ...
-word_upper = 0
-word_lower = 0
+word_upper = []
+word_lower = []
+word_title = []
+
 word_total = len(words) + len(numbers) + len(word_num)
 print(f"There are {word_total} words in the selected text.")
 
-# for word in text:
-#     if word.isupper():
-#         word_upper =+ 1
-#         print(word_upper)             nevim, to nevim
-#     elif word.islower():
-#         word_lower =+ 1
-#         print(word_lower)
+for word in text.split():
+    cleaned_text_no_lower.append(word.strip(".,:;"))
+
+for word in cleaned_text_no_lower:
+    if word.isalpha() and word.isupper():
+        word_upper.append(word)
+    elif word.isalpha() and word.islower():
+        word_lower.append(word)
+    elif word.istitle():
+        word_title.append(word)
+    else:
+        continue
+
+
+print(f"There are {len(word_title)} titlecase words.")
+print(f"There are {len(word_upper)} uppercase words.")
+print(f"There are {len(word_lower)} lowercase words.")
 
 num_string = len(numbers)
 print(f"There are {num_string} numeric strings.")
+
+num_int = [int(number) for number in numbers]
+num_sum = sum(num_int)
+print(f"The sum of all the numbers is {num_sum}.")
+
+print(divider)
+
+#Výpis výsledku uživateli
+
+# spočítám výskyty pro každé slovo
+word_occ: dict = dict()
+
+for word in cleaned_text:
+    if word not in word_occ:
+        word_occ[word] = 1
+    else:
+        word_occ[word] = word_occ[word] + 1
+
+# získej 9 nejčastějších hodnot
+words_words: list = list(word_occ.values())
+
+# získej slova, která se těchto hodnot týkají
+result = list()
+
+for word in cleaned_text:
+    result = len(cleaned_text[word])
+
+print(cleaned_text)
+print(word_occ)
+print(result)
+print(f"LEN|  OCCURENCES  |NR.")
+
+for index, value in enumerate(sorted(word_occ), 1):
+    print(f"{index:^3}|{len(value) * '*':<14}|{len(value)}")
+
