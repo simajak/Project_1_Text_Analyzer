@@ -140,18 +140,22 @@ print(f"The sum of all the numbers is {num_sum}.")
 
 print(divider)
 
-#Výpis výsledku uživateli
+# Výpis výsledku uživateli
+word_lenght = []
 
-result = dict()
 for word in cleaned_text:
-    len(word)
+    word_lenght.append(len(word))
+
+print(word_lenght)  # seznam délky slov
+
+count = []
+
+for number in word_lenght:
+    word_lenght.count(number)
+    count.append(word_lenght.count(number))  # seznam výskytů délek slov (výpočet za každé slovo)
 
 
-print(cleaned_text)
-print(word_occ)
-print(result)
+print(count)
 print(f"LEN|  OCCURENCES  |NR.")
 
-for index, value in enumerate(sorted(word_occ), 1):
-    print(f"{index:^3}|{len(value) * '*':<14}|{len(value)}")
 
