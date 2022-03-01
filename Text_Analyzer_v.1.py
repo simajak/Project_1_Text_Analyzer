@@ -146,16 +146,21 @@ word_lenght = []
 for word in cleaned_text:
     word_lenght.append(len(word))
 
-print(word_lenght)  # seznam délky slov
-
-count = []
+dict_count = {}
 
 for number in word_lenght:
-    word_lenght.count(number)
-    count.append(word_lenght.count(number))  # seznam výskytů délek slov (výpočet za každé slovo)
+    if number not in dict_count.keys():
+        dict_count[number] = 1
+    else:
+        dict_count[number] += 1
 
+values = dict_count.values()
+max_value = int(max(values))
+print(max_value)
 
-print(count)
-print(f"LEN|  OCCURENCES  |NR.")
+print(f"LEN|    OCCURENCES    |NR.")
+for key, value in sorted(dict_count.items()):
+    print(f"{key:>3}|{value * '*':<18}|{value:>}")
+
 
 
