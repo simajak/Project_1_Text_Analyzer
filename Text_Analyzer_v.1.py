@@ -154,9 +154,6 @@ for number in word_lenght:
     else:
         dict_count[number] += 1
 
-values = dict_count.values()
-max_value = int(max(values))
-print(max_value)
 
 print(f"LEN|    OCCURENCES    |NR.")
 for key, value in sorted(dict_count.items()):
