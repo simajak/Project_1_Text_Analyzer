@@ -3,8 +3,8 @@ author =
 '''
 TEXTS = ['''
 Situated about 10 miles west of Kemmerer,
-Fossil Butte is a ruggedly impressive
-topographic feature that rises sharply
+Fossil Butte is a ruggedly, impressive
+topographic feature, that rises sharply
 some 1000 feet above Twin Creek Valley
 to an elevation of more than 7500 feet
 above sea level. The butte is located just
@@ -54,10 +54,11 @@ else:
 
 # Zadání čísla textu (int!)
 text_number = input("Enter a number btw. 1 and 3 to select: ")
-if text_number.isalpha():
+last_index = len(TEXTS)
+if not text_number.isnumeric():
     print("Invalid entry, terminating the program...")
     quit()
-elif int(text_number) not in range(1,4):
+elif int(text_number) not in range(1,int(last_index) +1):
     print("Invalid entry, terminating the program...")
     quit()
 else:
@@ -155,9 +156,14 @@ for number in word_lenght:
         dict_count[number] += 1
 
 
-print(f"LEN|    OCCURENCES    |NR.")
+#print(f"LEN|    OCCURENCES    |NR.")
+#for key, value in sorted(dict_count.items()):
+    #print(f"{key:>3}|{value * '*':<18}|{value:>}")
+
+values = dict_count.values()
+max_value = int(max(values))
+print(max_value)
+
+print(f"LEN|".ljust(4),"OCCURENCES".center(max_value),"|NR.".rjust(3))
 for key, value in sorted(dict_count.items()):
-    print(f"{key:>3}|{value * '*':<18}|{value:>}")
-
-
-
+    print(f"{key}|".rjust(4),f"{value * '*'}".ljust(max_value),f"|{value}".ljust(3))
