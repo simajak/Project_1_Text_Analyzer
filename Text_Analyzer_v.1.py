@@ -4,11 +4,11 @@ author =
 TEXTS = ['''
 Situated about 10 miles west of Kemmerer,
 Fossil Butte is a ruggedly, impressive
-topographic feature, that rises sharply
+topographic feature , that rises sharply
 some 1000 feet above Twin Creek Valley
-to an elevation of more than 7500 feet
+to an elevation of more ! than 7500 feet
 above sea level. The butte is located just
-north of US 30N and the Union Pacific Railroad,
+north of US 30N and the ??? Union Pacific Railroad,
 which traverse the valley. ''',
 '''At the base of Fossil Butte are the bright
 red, purple, yellow and gray beds of the Wasatch
@@ -35,6 +35,7 @@ reg_users = {"bob" : "123",
              "ann" : "pass123",
              "mike" : "password123",
              "liz" : "pass123"}
+last_index = len(TEXTS)
 
 # Uživatel zadá jméno a heslo
 username = input("Username: ")
@@ -44,7 +45,7 @@ password = input("Password: ")
 if reg_users.get(username) == password:
     print(divider)
     print(f"Welcome to the app, {username}!")
-    print("We have 3 texts to be analyzed.")
+    print(f"We have {int(last_index)} texts to be analyzed.")
     print(divider)
 
 # Když neni zaregistrovaný
@@ -53,8 +54,8 @@ else:
     quit()
 
 # Zadání čísla textu (int!)
-text_number = input("Enter a number btw. 1 and 3 to select: ")
-last_index = len(TEXTS)
+text_number = input(f"Enter a number btw. 1 and {int(last_index)} to select: ")
+
 if not text_number.isnumeric():
     print("Invalid entry, terminating the program...")
     quit()
@@ -86,6 +87,8 @@ for word in cleaned_text:
         numbers.append(word)
     elif word.isalnum(): # vykopne text, který neni alpha nebo num
         word_num.append(word)
+    elif not word.isalpha() or word.isalnum() or word.isnumeric():
+        cleaned_text.remove(word)
     else:
         continue
 
@@ -162,7 +165,6 @@ for number in word_lenght:
 
 values = dict_count.values()
 max_value = int(max(values))
-print(max_value)
 
 print(f"LEN|".ljust(4),"OCCURENCES".center(max_value),"|NR.".rjust(3))
 for key, value in sorted(dict_count.items()):
