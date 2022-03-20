@@ -4,11 +4,11 @@ author =
 TEXTS = ['''
 Situated about 10 miles west of Kemmerer,
 Fossil Butte is a ruggedly, impressive
-topographic feature , that rises sharply
+topographic feature that rises sharply
 some 1000 feet above Twin Creek Valley
-to an elevation of more ! than 7500 feet
+to an elevation of more than 7500 feet
 above sea level. The butte is located just
-north of US 30N and the ??? Union Pacific Railroad,
+north of US 30N and the Union Pacific Railroad,
 which traverse the valley. ''',
 '''At the base of Fossil Butte are the bright
 red, purple, yellow and gray beds of the Wasatch
@@ -18,6 +18,24 @@ and steepen abruptly. Overlying them and extending
 to the top of the butte are the much steeper
 buff-to-white beds of the Green River Formation,
 which are about 300 feet thick.''',
+'''The monument contains 8198 acres and protects
+a portion of the largest deposit of freshwater fish
+fossils in the world. The richest fossil fish deposits
+are found in multiple limestone layers, which lie some
+100 feet below the top of the butte. The fossils
+represent several varieties of perch, as well as
+other freshwater genera and herring similar to those
+in modern oceans. Other fish such as paddlefish,
+garpike and stingray are also present.''',
+'''The monument contains 8198 acres and protects
+a portion of the largest deposit of freshwater fish
+fossils in the world. The richest fossil fish deposits
+are found in multiple limestone layers, which lie some
+100 feet below the top of the butte. The fossils
+represent several varieties of perch, as well as
+other freshwater genera and herring similar to those
+in modern oceans. Other fish such as paddlefish,
+garpike and stingray are also present.''',
 '''The monument contains 8198 acres and protects
 a portion of the largest deposit of freshwater fish
 fossils in the world. The richest fossil fish deposits
@@ -72,42 +90,20 @@ corrected_text_number = int(text_number) - 1
 text = TEXTS[corrected_text_number]
 cleaned_text = []
 cleaned_text_no_lower = []
-words = []
 numbers = []
+words = []
 word_num = []
 
-for word in text.split(): # seznam slov
-    cleaned_text.append(word.strip(".,:;").lower())
 
-# Rozdělení na "slova" a "čísla"
+for word in text.split(): # seznam slov
+    cleaned_text.append(word.strip(".,:;_").lower())
+
+word_count = []
 for word in cleaned_text:
-    if word.isalpha():
-        words.append(word)
-    elif word.isnumeric():
-        numbers.append(word)
-    elif word.isalnum(): # vykopne text, který neni alpha nebo num
-        word_num.append(word)
-    elif not word.isalpha() or word.isalnum() or word.isnumeric():
+    if not word:
         cleaned_text.remove(word)
     else:
-        continue
-
-# spočítat výskyt pro každé slovo = musim si vyrobit ! slovníky !
-word_count = {}
-number_count = {}
-
-for word in words:
-    if word not in word_count:
-        word_count[word] = 1
-    else:
-        word_count[word] =+ 1
-
-for number in numbers:
-    if word not in number_count:
-        number_count[number] = 1
-    else:
-        number_count[number] =+ 1
-
+        word_count.append(word)
 
 # Výpočet slov, čísel, ...
 word_upper = []
@@ -115,7 +111,7 @@ word_lower = []
 word_title = []
 
 word_total = len(words) + len(numbers) + len(word_num)
-print(f"There are {word_total} words in the selected text.")
+print(f"There are {len(word_count)} words in the selected text.")
 
 for word in text.split():
     cleaned_text_no_lower.append(word.strip(".,:;"))
@@ -123,13 +119,14 @@ for word in text.split():
 for word in cleaned_text_no_lower:
     if word.isalpha() and word.isupper():
         word_upper.append(word)
-    elif word.isalpha() and word.islower():
+    elif word.islower():
         word_lower.append(word)
     elif word.istitle():
         word_title.append(word)
+    elif word.isnumeric():
+        numbers.append(word)
     else:
         continue
-
 
 print(f"There are {len(word_title)} titlecase words.")
 print(f"There are {len(word_upper)} uppercase words.")
@@ -157,11 +154,6 @@ for number in word_lenght:
         dict_count[number] = 1
     else:
         dict_count[number] += 1
-
-
-#print(f"LEN|    OCCURENCES    |NR.")
-#for key, value in sorted(dict_count.items()):
-    #print(f"{key:>3}|{value * '*':<18}|{value:>}")
 
 values = dict_count.values()
 max_value = int(max(values))
