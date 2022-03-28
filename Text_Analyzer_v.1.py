@@ -77,7 +77,7 @@ text_number = input(f"Enter a number btw. 1 and {int(last_index)} to select: ")
 if not text_number.isnumeric():
     print("Invalid entry, terminating the program...")
     quit()
-elif int(text_number) not in range(1,int(last_index) +1):
+elif int(text_number) not in range(1,int(last_index)+1):
     print("Invalid entry, terminating the program...")
     quit()
 else:
@@ -111,7 +111,7 @@ word_lower = []
 word_title = []
 
 word_total = len(words) + len(numbers) + len(word_num)
-print(f"There are {len(word_count)} words in the selected text.")
+print(f"There are {len(cleaned_text)} words in the selected text.")
 
 for word in text.split():
     cleaned_text_no_lower.append(word.strip(".,:;"))
