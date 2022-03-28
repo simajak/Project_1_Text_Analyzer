@@ -6,7 +6,7 @@ Situated about 10 miles west of Kemmerer,
 Fossil Butte is a ruggedly, impressive
 topographic feature that rises sharply
 some 1000 feet above Twin Creek Valley
-to an elevation of more than 7500 feet
+to an elevation of more .  than 7500 feet
 above sea level. The butte is located just
 north of US 30N and the Union Pacific Railroad,
 which traverse the valley. ''',
@@ -58,6 +58,7 @@ last_index = len(TEXTS)
 username = input("Username: ")
 password = input("Password: ")
 
+# Kontrola, jestli je uživatel zaregistrovaný
 if reg_users.get(username) == password:
     print(divider)
     print(f"Welcome to the app, {username}!")
@@ -98,6 +99,9 @@ for word in cleaned_text:
         cleaned_text.remove(word)
     else:
         word_count.append(word)
+
+# Výpočet slov, čísel +
+# Výpis výsledku uživateli
 
 word_upper = []
 word_lower = []
