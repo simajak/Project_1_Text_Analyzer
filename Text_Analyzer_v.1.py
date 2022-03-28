@@ -47,7 +47,7 @@ in modern oceans. Other fish such as paddlefish,
 garpike and stingray are also present.'''
 ]
 
-divider = "-" * 42 # Snad to bude stačit...
+divider = "-" * 42
 
 reg_users = {"bob" : "123",
              "ann" : "pass123",
@@ -55,23 +55,19 @@ reg_users = {"bob" : "123",
              "liz" : "pass123"}
 last_index = len(TEXTS)
 
-# Uživatel zadá jméno a heslo
 username = input("Username: ")
 password = input("Password: ")
 
-# Kontrola, jestli je uživatel zaregistrovaný
 if reg_users.get(username) == password:
     print(divider)
     print(f"Welcome to the app, {username}!")
     print(f"We have {int(last_index)} texts to be analyzed.")
     print(divider)
 
-# Když neni zaregistrovaný
 else:
     print("Unregistered user, terminating the program...")
     quit()
 
-# Zadání čísla textu (int!)
 text_number = input(f"Enter a number btw. 1 and {int(last_index)} to select: ")
 
 if not text_number.isnumeric():
@@ -83,10 +79,8 @@ elif int(text_number) not in range(1,int(last_index)+1):
 else:
     print(divider)
 
-# Je potřeba upravit číslo textu kvůli indexování v seznamu TEXTS
 corrected_text_number = int(text_number) - 1
 
-# Příprava na vyčištěné textu (corrected_text_number = index)
 text = TEXTS[corrected_text_number]
 cleaned_text = []
 cleaned_text_no_lower = []
@@ -95,7 +89,7 @@ words = []
 word_num = []
 
 
-for word in text.split(): # seznam slov
+for word in text.split():
     cleaned_text.append(word.strip(".,:;_").lower())
 
 word_count = []
@@ -105,7 +99,6 @@ for word in cleaned_text:
     else:
         word_count.append(word)
 
-# Výpočet slov, čísel, ...
 word_upper = []
 word_lower = []
 word_title = []
@@ -141,7 +134,6 @@ print(f"The sum of all the numbers is {num_sum}.")
 
 print(divider)
 
-# Výpis výsledku uživateli
 word_lenght = []
 
 for word in cleaned_text:
